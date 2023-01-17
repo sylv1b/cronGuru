@@ -20,7 +20,7 @@ const user = {
 
 const login = {
     email: EMAIL,
-    password: Password,
+    password: PASSWORD,
 };
 
 const userAgent = USER_AGENT;
