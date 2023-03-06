@@ -70,7 +70,7 @@ const getActiveChallenges = async () => {
             host: "api.gurushots.com",
             "x-device": "iPhone",
             "x-requested-with": "XMLHttpRequest",
-            "x-model": "iPhone X",
+            "x-model": "iPhone 14 Pro",
             "accept-encoding": "br;q=1.0, gzip;q=0.9, deflate;q=0.8",
             "x-token": user.token,
             "x-api-version": "20",
@@ -79,7 +79,7 @@ const getActiveChallenges = async () => {
             "x-env": "IOS",
             "user-agent": userAgent,
             "content-length": "0",
-            "x-app-version": "2.11.6",
+            "x-app-version": "2.15.1",
             connection: "keep-alive",
             accept: "*/*",
             "x-brand": "Apple",
@@ -141,8 +141,8 @@ const getVoteImages = async (challenge) => {
 };
 
 const submitVotes = async (voteImages) => {
-    const { challenge, voting, images } = voteImages;
-    if (!images.length) return;
+    const { challenge, voting, images, success } = voteImages;
+    if (!success || !images.length) return;
     const id = `c_id=${challenge.id}`;
     let votedImages = "";
 
@@ -258,6 +258,7 @@ const fetchChallengesAndVote = async () => {
         user = userLogin;
     }
     const activesChallenges = await getActiveChallenges();
+    console.log(activesChallenges);
     const { challenges } = activesChallenges;
     const now = Math.floor(Date.now() / 1000);
     for (challenge of challenges) {
